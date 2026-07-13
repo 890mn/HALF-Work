@@ -41,6 +41,14 @@ is coordinated and verified.
 
 The reusable template is [`templates/ACTIVE_TASK_EXAMPLE.md`](templates/ACTIVE_TASK_EXAMPLE.md).
 
+## Skill v0.1
+
+The current reusable process synthesis is [`skills/half-work/SKILL.md`](skills/half-work/SKILL.md).
+Invoke it explicitly as `$half-work` when a task needs a two-step contract,
+evidence gates, review, and closure metrics. This is still a Personal Pilot;
+the next real tasks should forward-test its trigger precision and metric
+definitions before a v1 revision.
+
 ## Workflow
 
 ```text
@@ -79,7 +87,9 @@ The initial private planning documents `HALF-Work-ROADMAP.md` and
 
 ## Current direction
 
-The next real task should validate the revised template and record lightweight
-cost evidence: elapsed time, Agent calls, rework rounds, changed files, and
-human decisions. A public template should grow from another real project,
-not from publishing the entire private planning history at once.
+Version 0.1 is synthesized from four DeskNest engineering cases plus the Phase
+1 control-plane rollout. The next real task should validate the skill and
+record lightweight cost evidence: elapsed time, Agent calls, rework rounds,
+changed files, and human decisions. A public template should grow from
+another real project, not from publishing the entire private planning history
+at once.

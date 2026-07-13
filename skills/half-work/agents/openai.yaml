@@ -1,0 +1,4 @@
+interface:
+  display_name: "HALF-Work"
+  short_description: "Human-agent task contracts and evidence gates"
+  default_prompt: "Use $half-work to plan, execute, verify, and close a real engineering task with explicit evidence."
