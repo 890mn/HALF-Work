@@ -2,6 +2,8 @@
 
 **Human Agent Live in Framework**
 
+**Language:** English (default) · [中文介绍](docs/README.zh-CN.md)
+
 HALF-Work is a lightweight Human–Agent collaboration framework for real
 software and hardware projects. It keeps the human's intent broad enough to
 describe naturally, then asks the Agent to refine scope, evidence, risks, and
@@ -48,6 +50,8 @@ Invoke it explicitly as `$half-work` when a task needs a two-step contract,
 evidence gates, review, and closure metrics. This is still a Personal Pilot;
 the next real tasks should forward-test its trigger precision and metric
 definitions before a v1 revision.
+
+For a Chinese onboarding guide, see [`docs/README.zh-CN.md`](docs/README.zh-CN.md).
 
 ## Workflow
 
