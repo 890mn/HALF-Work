@@ -7,6 +7,7 @@
 /.tasks/
 /docs/control/
 *.local.md
+/templates/achieve/*
 
 # Machine and generated files.
 .DS_Store
