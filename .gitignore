@@ -1,0 +1,15 @@
+# Private pilot planning documents. Keep these local; do not publish them.
+/HALF-Work-ROADMAP.md
+/design-draft.md
+/.obsidian/
+
+# Local control-plane state and task contracts.
+/.tasks/
+/docs/control/
+*.local.md
+
+# Machine and generated files.
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
