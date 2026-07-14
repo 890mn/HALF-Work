@@ -53,6 +53,14 @@ definitions before a v1 revision.
 
 For a Chinese onboarding guide, see [`docs/README.zh-CN.md`](docs/README.zh-CN.md).
 
+## v0.1 status
+
+v0.1 is a usable Personal Pilot baseline synthesized from four DeskNest
+engineering cases. It includes the executable Skill, the two-step task
+template, bilingual onboarding, explicit evidence outcomes, and a private
+active-contract boundary. It is ready for forward-testing, but it is not yet
+a universal governance standard or an automated metrics system.
+
 ## Workflow
 
 ```text
@@ -82,6 +90,7 @@ It does not contain:
 
 - private pilot planning history;
 - local control files or active task contracts;
+- working copies such as `templates/ACTIVE_TASK.md`;
 - editor state or machine-local configuration;
 - credentials, tokens, private URLs, or generated secrets;
 - DeskNest or CNFontNest product code.
@@ -91,9 +100,9 @@ The initial private planning documents `HALF-Work-ROADMAP.md` and
 
 ## Current direction
 
-Version 0.1 is synthesized from four DeskNest engineering cases plus the Phase
-1 control-plane rollout. The next real task should validate the skill and
-record lightweight cost evidence: elapsed time, Agent calls, rework rounds,
-changed files, and human decisions. A public template should grow from
-another real project, not from publishing the entire private planning history
-at once.
+Version 0.1 is now a usable pilot baseline. The next improvement should come
+from a fresh real task: invoke the Skill, exercise the two-step contract,
+record elapsed time, Agent calls, rework rounds, changed files, and human
+decisions, then revise only the rules that the evidence actually exposes. A
+public template should grow from another real project, not from publishing
+the entire private planning history at once.

@@ -6,6 +6,7 @@
 # Local control-plane state and task contracts.
 /.tasks/
 /docs/control/
+/templates/ACTIVE_TASK.md
 *.local.md
 /templates/achieve/*
 

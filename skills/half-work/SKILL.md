@@ -223,6 +223,11 @@ Use $half-work to implement the accepted task, preserve unrelated worktree
 changes, verify the declared gates, record metrics, and prepare the checkpoint.
 ```
 
+If this repository-local copy is not installed or linked into the Codex Skill
+directory, a fresh conversation may not discover `$half-work` automatically.
+Install or link the Skill first, or explicitly provide the local path to
+`skills/half-work/SKILL.md`; a README link alone is not a Skill invocation.
+
 Do not invoke this skill for a trivial explanation, translation, or code review
 that does not require task-contract and evidence management.
 
