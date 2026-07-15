@@ -7,10 +7,10 @@
 HALF-Work is a lightweight Human–Agent collaboration framework for real
 software and hardware projects. It keeps the human's intent broad enough to
 describe naturally, then asks the Agent to refine scope, evidence, risks, and
-options before implementation begins.
+only the decisions that materially affect implementation.
 
-> Status: **Personal Pilot** — the first DeskNest engineering trials are
-> complete; framework acceptance is still under revision.
+> Status: **v0.2 Personal Pilot** — the first engineering trials and one
+> self-hosted usage review are complete; external-project acceptance remains.
 
 ## Why HALF-Work
 
@@ -26,40 +26,42 @@ These dimensions must not be collapsed into one overloaded “level” field:
 | Dimension | Meaning |
 | --- | --- |
 | HALF-Work Task Class | `L0` small fix, `L1` standard task, `L2` architecture task |
-| Global Orchestration Level | The host project's Level 1/2/3 planning and Agent-dispatch rules |
-| Model Thinking Level | `轻量`, `标准`, or `深入` reasoning depth requested by the user |
+| Global Orchestration Level | Host-defined planning and Agent-dispatch policy, or `Not Defined` |
+| Model Thinking Level | `Light`, `Standard`, `Deep`, or `Not Defined` |
 | Resource Mode | `economy`, `balanced`, or `maximum` task-local resource budget |
 
 The task class describes the work. The other dimensions describe how the work
 is coordinated and verified.
 
-## Two-step task contract
+## Two-step task contract, without duplicate ceremony
 
-1. **Human Draft** — choose the task class and thinking level, then describe the
-   goal, context, preferences, constraints, and unknowns in natural language.
+1. **Human Draft** — describe the goal, context, preferences, constraints, and
+   unknowns naturally. The Agent reuses the conversation instead of requiring a
+   form.
 2. **Agent Refinement / User Review** — inspect the real repository, propose
-   scope and options, define evidence and acceptance outcomes, and wait for
-   user confirmation before implementation.
+   scope, define evidence and acceptance outcomes, and pause only when a
+   material decision or new authority is required.
 
 The reusable template is [`templates/ACTIVE_TASK_EXAMPLE.md`](templates/ACTIVE_TASK_EXAMPLE.md).
 
-## Skill v0.1
+## Skill v0.2
 
 The current reusable process synthesis is [`skills/half-work/SKILL.md`](skills/half-work/SKILL.md).
-Invoke it explicitly as `$half-work` when a task needs a two-step contract,
-evidence gates, review, and closure metrics. This is still a Personal Pilot;
-the next real tasks should forward-test its trigger precision and metric
-definitions before a v1 revision.
+Invoke it explicitly as `$half-work` when a non-trivial task needs workspace
+inspection, scope and ownership, evidence gates, review, or honest closure.
+v0.2 adds four operating tracks (`Refine`, `Execute`, `Review`, and `Close`), a
+material-decision checkpoint, portable role names, aligned Host/build evidence,
+and proportionate metrics.
 
 For a Chinese onboarding guide, see [`docs/README.zh-CN.md`](docs/README.zh-CN.md).
 
-## v0.1 status
+## v0.2 status
 
-v0.1 is a usable Personal Pilot baseline synthesized from four DeskNest
-engineering cases. It includes the executable Skill, the two-step task
-template, bilingual onboarding, explicit evidence outcomes, and a private
-active-contract boundary. It is ready for forward-testing, but it is not yet
-a universal governance standard or an automated metrics system.
+v0.2 is a compatibility-focused Personal Pilot revision. Existing v0.1
+contracts remain readable, while new tasks no longer require the user to repeat
+known context, compare artificial options, or wait at a checkpoint when the
+requested implementation is already clear. It remains a lightweight workflow,
+not a universal governance standard or an automated metrics system.
 
 ## Workflow
 
@@ -80,8 +82,10 @@ Every gate records one explicit result:
 - `Accepted Limitation` — a declared boundary was observed and accepted;
 - `Carried Risk` — the item remains open with a named follow-up trigger.
 
-An accepted limitation is evidence, not a disguised pass. A closed task must
-be archived or replaced before another task becomes current.
+An accepted limitation is evidence, not a disguised pass. If it changes a
+required accepted result, it must be pre-accepted in the contract or explicitly
+accepted by the human after observation. A closed task must be archived or
+replaced before another task becomes current.
 
 ## Public and private boundary
 
@@ -100,9 +104,8 @@ The initial private planning documents `HALF-Work-ROADMAP.md` and
 
 ## Current direction
 
-Version 0.1 is now a usable pilot baseline. The next improvement should come
-from a fresh real task: invoke the Skill, exercise the two-step contract,
-record elapsed time, Agent calls, rework rounds, changed files, and human
-decisions, then revise only the rules that the evidence actually exposes. A
-public template should grow from another real project, not from publishing
-the entire private planning history at once.
+Version 0.2 should now be exercised in a project outside the original pilot.
+The next evaluation should ask whether the Skill selects the right operating
+track, avoids unnecessary pauses, preserves worktree ownership, and closes
+required gates honestly. Collect timing or Agent-call metrics only when those
+measurements answer a real process question.

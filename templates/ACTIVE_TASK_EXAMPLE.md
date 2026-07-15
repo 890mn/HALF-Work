@@ -1,145 +1,100 @@
-# Active Task — Human Draft Template
+# Active Task — v0.2 Template
 
-> A two-step contract for Human–Agent collaboration. The Agent must complete
-> Step 2 from the real repository context and wait for user review before
-> entering implementation.
+> Use the smallest sections the task needs. The Agent may infer the Human Draft
+> from the conversation; the user does not need to copy existing context into
+> this file.
 
-## Step 1 — Human Draft
+## Human Draft
 
-### Task Profile
+- Desired result:
+- Observed symptom or context:
+- Preferences and constraints:
+- Preserved behavior and non-goals:
+- Known unknowns for the Agent to investigate:
+- External, public, or device gate involved:
 
-#### HALF-Work Task Class
+## Agent Refinement
 
-- [ ] **L0 — Small fix**: local bug, parameter, text, or low-risk adjustment
-- [ ] **L1 — Standard task**: page, module, interaction, or bounded feature
-- [ ] **L2 — Architecture task**: state, data flow, core architecture, or high-regression change
+### Operating Track
 
-#### Model Thinking Level
+- Primary track (select one):
+- [ ] Refine
+- [ ] Execute
+- [ ] Review
+- [ ] Close
+- Secondary tracks, if the request combines lifecycle stages:
 
-- [ ] **Light**: reuse known context and propose the smallest viable path
-- [ ] **Standard**: inspect the repository, risks, and 2–3 practical options
-- [ ] **Deep**: inspect history, cross-module dependencies, alternatives, and regression boundaries
+### Classification
 
-### Task Overview
-
-Describe the desired result in one or two sentences.
-
-### Task Description
-
-Describe the idea, symptom, target behavior, reference, or expected result in
-natural language. Do not guess the files, API, tests, or Agent split yet.
-
-### Task Preferences
-
-- Prefer the smallest change:
-- Prefer visible device/product behavior:
-- Allow a new module:
-- Preserve existing interaction:
-- Preferred visual or technical direction:
-- Allow a separate public-repository artifact:
-- Other preference:
-
-### User Known Constraints
-
-Write constraints, preserved behavior, non-goals, or privacy requirements.
-
-### User Unknowns
-
-Write what the Agent should determine: task class, files, options, tests,
-regression risk, hardware acceptance, or public/private boundary.
-
-## Step 2 — Agent Refinement / User Review
-
-### Repository Context
-
-- Relevant modules:
-- Entry point and data flow:
-- Historical decisions:
-- Relevant case log:
-- Current worktree state:
-- Baseline commit/version:
-
-### Proposed Classification
-
-- HALF-Work Task Class:
-- Global Orchestration Level:
-- Model Thinking Level:
+- HALF-Work Task Class: `L0` / `L1` / `L2`
+- Global Orchestration Level: host-defined or `Not Defined`
+- Model Thinking Level: `Light` / `Standard` / `Deep` / `Not Defined`
 - Resource Mode: `economy` / `balanced` / `maximum`
 - Reasoning:
 
-### Proposed Scope
+### Repository and Ownership
 
+- Root, branch, and baseline:
+- Relevant entry point, modules, and data flow:
+- Applicable rules and historical decisions:
+- Worktree state:
+- Task-owned changes:
+- User-owned changes:
+- Unrelated changes:
+
+### Scope
+
+- Outcome:
+- Selected direction:
 - Allowed changes:
 - Explicit non-goals:
-- Existing change ownership: `task-owned` / `user-owned` / `unrelated`
 - Escalation conditions:
 
-### Proposed Options
+### Decision Checkpoint
 
-#### Option A
+- Material alternatives:
+- Recommended direction:
+- User decision required: `Yes` / `No`
+- Reason or recorded user decision:
 
-- Approach:
-- Benefit:
-- Risk:
-- User decision:
+Include multiple options only when they materially change behavior, public
+contracts, risk, cost, or irreversible work.
 
-#### Option B
+## Verification Contract
 
-- Approach:
-- Benefit:
-- Risk:
-- User decision:
+| Claim | Gate | Required | Result | Evidence | Owner / follow-up trigger |
+| --- | --- | --- | --- | --- | --- |
+|  | Static / Host/build / Runtime / External/device | Yes / No | Not Run |  |  |
 
-#### Option C (optional)
+Allowed results: `Pass`, `Fail`, `Not Run`, `Accepted Limitation`, and
+`Carried Risk`. A required `Not Run` or `Fail` keeps the task open. A required
+`Accepted Limitation` must be pre-accepted in the contract or explicitly
+accepted by the human after observation. A required `Carried Risk` needs
+explicit human acceptance plus an owner and trigger.
 
-- Approach:
-- Benefit:
-- Risk:
-- User decision:
+## Implementation and Review
 
-### Verification Contract
+- Lead:
+- Executor or reviewer, if useful and permitted:
+- Changed files:
+- Rework after first verification:
+- Non-goal and regression review:
 
-#### Static Inputs
+## Metrics
 
-- Inputs to inspect:
-- Generated or excluded directories:
+Required: changed files, checks and outcomes, unresolved risks, and material
+human decisions.
 
-#### Runtime Inputs
+Optional when reliably measurable: start/review/final-acceptance time,
+end-to-end duration, Agent or tool-call count with counting definition, and
+rework rounds. Use `unavailable` rather than invented precision.
 
-- Network, JSON, user, or dynamic strings:
-- Vocabulary, manifest, or fallback requirement:
+## Closure
 
-#### External / Device Evidence
-
-- Browser, board, service, or human observation:
-- Checks intentionally not run:
-
-### Acceptance Outcomes
-
-Each item must use one result:
-`Pass`, `Fail`, `Not Run`, `Accepted Limitation`, or `Carried Risk`.
-
-| Acceptance item | Result | Evidence | Note / follow-up |
-|---|---|---|---|
-|  |  |  |  |
-
-### User Review Decision
-
-- [ ] Accept the proposed option and enter implementation
-- [ ] Choose another option and request a revised contract
-- [ ] Narrow the scope and review again
-- [ ] Pause the task
-
-User decision:
-
-## Lifecycle
-
-```text
-Draft → Refinement → Awaiting User Review → Active → Verify → Review → Closed
-```
-
-If a risk is carried, the task may close only when its owner and follow-up
-trigger are recorded. The completed contract must be archived or replaced.
+- Final state: `Open` / `Closed` / `Closed with accepted carried risk`
+- Human acceptance required and recorded:
+- Remaining owner and trigger:
+- Archive or replacement location:
 
 ## Public / Private Boundary
 

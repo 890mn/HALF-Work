@@ -1,239 +1,202 @@
 ---
 name: half-work
-description: Run the HALF-Work Human–Agent workflow for real software, firmware, UI, hardware, and architecture tasks. Use when a task needs a two-step contract, explicit scope and ownership, separate task/resource/model levels, evidence gates, Agent delegation, external or device acceptance, Git stage metadata, or process metrics.
+description: Run a lightweight Human-Agent contract for non-trivial software, firmware, UI, hardware, architecture, or public workflow changes. Use when Codex must inspect a real workspace, preserve worktree ownership, refine scope, choose whether a human decision is actually required, separate build/runtime/device evidence, coordinate delegated roles, or close work with explicit risks and acceptance. Also use to execute or review an existing HALF-Work task contract. Do not trigger for ordinary explanations or tiny edits that need no durable contract.
 ---
 
-# HALF-Work v0.1
+# HALF-Work v0.2
 
-Use this skill to turn a natural-language engineering request into a bounded,
-reviewable task with evidence and an explicit closure decision. Keep the human
-intent broad in the first step; make the implementation contract precise only
-after inspecting the real repository.
+Turn an engineering request into bounded work with proportionate evidence. Reuse
+what the user already said; do not make them complete a form or repeat a decision
+that is already clear.
 
-This is a Personal Pilot skill. Reuse its workflow across repositories, but
-do not treat its DeskNest-derived examples as universal product rules.
+HALF-Work is a Personal Pilot. Apply its control and evidence rules across
+projects, but keep project-specific architecture and model names local.
 
-## 1. Load the control plane
+## 1. Select the operating track
 
-Read in order, when the files exist:
+Choose one primary track before doing work; add secondary tracks when the
+request combines lifecycle stages:
 
-1. Global `AGENTS.md` and its safety rules.
-2. The nearest project or module `AGENTS.md`.
-3. Stable control files: `PROJECT_CONTROL.md`, `ACCEPTANCE.md`,
-   `DECISIONS.md`, `CASELOG.md`, and acceptance examples.
-4. The current task contract, normally `.tasks/ACTIVE_TASK.md`.
+- **Refine:** inspect a new or ambiguous request and produce a task contract.
+- **Execute:** implement an explicit request or an already accepted contract.
+- **Review:** diagnose, inspect, or verify without changing implementation.
+- **Close:** reconcile evidence, risks, metrics, and task state.
 
-Treat the layers as an inheritance chain. A lower layer may add local facts or
-narrow scope, but may not weaken a higher-layer safety constraint. If the
-control plane is missing, report that fact and perform a narrow repository
-audit; do not invent project rules.
+A user may combine tracks, such as “review the current defects and improve the
+skill.” Treat that as authorization to review and execute within the stated
+boundary. Do not pause merely because a Human Draft file is absent.
 
-Before editing, inspect the worktree, build entry point, current branch, and
-relevant source-of-truth files. Classify existing changes as `user-owned`,
-`task-owned`, or `unrelated`. Preserve user-owned and unrelated changes.
+## 2. Load the control plane and workspace
 
-## 2. Keep the four dimensions independent
+Read existing layers in this order:
 
-Record these separately in the task contract:
+1. global safety and Agent rules;
+2. the nearest project or module `AGENTS.md`;
+3. stable project control files, such as `PROJECT_CONTROL.md`, `ACCEPTANCE.md`,
+   `DECISIONS.md`, `CASELOG.md`, and acceptance examples;
+4. the current task contract, normally `.tasks/ACTIVE_TASK.md`.
 
-| Dimension | Values | Meaning |
-|---|---|---|
-| HALF-Work Task Class | `L0`, `L1`, `L2` | Scope and risk of the engineering work |
-| Global Orchestration Level | project-defined `Level 1/2/3` | Planning and Agent-dispatch policy |
-| Model Thinking Level | `Light`, `Standard`, `Deep` | Reasoning depth requested by the user |
-| Resource Mode | `economy`, `balanced`, `maximum` | Task-local resource budget |
+Lower layers may add facts or narrow scope, but may not weaken higher safety
+rules. Report missing layers briefly and continue with a narrow repository
+audit. Do not invent a control plane just to satisfy the Skill.
 
-Do not use a project quota or model-thinking level as a substitute for the
-HALF-Work task class.
+Before editing, inspect the repository root, branch, worktree, build or document
+entry point, relevant history, and source-of-truth files. Classify changes as
+`user-owned`, `task-owned`, or `unrelated`; preserve the first and third.
 
-Apply the task classes as follows:
+## 3. Refine a minimum viable contract
 
-- `L0`: one small fix, parameter, text, or low-risk behavior change. Preserve
-  the existing boundary and use a fast path when evidence is proportionate.
-- `L1`: one bounded page, module, interaction, or feature with stable data and
-  architecture boundaries. Define the affected files and explicit non-goals.
-- `L2`: architecture, state/data-flow change, reusable build tool, public
-  contract, multi-module change, or a task with several independent gates.
-  Plan the interfaces and sub-gates before implementation.
+Infer the Human Draft from the conversation. Ask only for information that
+cannot be discovered and would materially change scope, authority, safety, or
+the accepted result.
 
-Use Resource Mode as a task-local choice:
+Record the four dimensions separately when the host supports them:
 
-- `economy`: reuse existing evidence, keep the scan narrow, and do not add
-  reviewers or exploratory Agents automatically.
-- `balanced`: use one lead/executor split when available; request one
-  architecture gate only when the task genuinely needs it.
-- `maximum`: reserve broader parallel work and independent design/review for
-  high-risk releases or complex refactors.
+| Dimension | Typical values | Purpose |
+| --- | --- | --- |
+| HALF-Work Task Class | `L0`, `L1`, `L2` | engineering scope and risk |
+| Global Orchestration Level | host-defined `Level 1/2/3` | coordination policy |
+| Model Thinking Level | `Light`, `Standard`, `Deep` | requested reasoning depth |
+| Resource Mode | `economy`, `balanced`, `maximum` | task-local resource budget |
 
-Respect the project's model mapping. Do not call Sol or exploratory Agents
-unless the contract, user, or a genuine architecture block requires it.
+Never substitute one dimension for another. If the host does not define a
+dimension, use `Not Defined`; do not manufacture model or orchestration policy.
 
-## 3. Use the two-step task contract
+- `L0`: a small local fix or low-risk adjustment that preserves boundaries.
+- `L1`: a bounded module, page, interaction, or feature with stable boundaries.
+- `L2`: architecture, state/data flow, public contract, reusable tooling,
+  multi-module work, or work with several independent gates.
 
-### Step 1 — Human Draft
+The contract must state the outcome, selected direction, allowed changes,
+non-goals, ownership, escalation conditions, and verification gates. Use the
+smallest durable representation the project supports; a concise commentary
+contract is enough for a fast path, while L2 work should use a task file when
+the project has one.
 
-Ask the user to select the Task Class and Model Thinking Level, then describe:
+## 4. Use a material decision checkpoint
 
-- desired result and observed symptom;
-- context, preferences, constraints, preserved behavior, and non-goals;
-- known unknowns the Agent should determine;
-- whether a public artifact, board, browser, service, or other external gate is
-  involved.
+Present multiple options only when they lead to materially different product
+behavior, public contracts, risk, cost, or irreversible work. Recommend one.
 
-Do not require the user to guess filenames, APIs, tests, or Agent assignments.
+Pause for the user when:
 
-### Step 2 — Agent Refinement / User Review
+- authority for a side effect or scope expansion is missing;
+- two viable directions change the accepted result;
+- a destructive, public, costly, or external action needs consent;
+- an unresolved acceptance tradeoff belongs to the human.
 
-Inspect the real repository and complete the contract with:
+Do not pause when repository evidence resolves the question, the user already
+selected the direction, or one bounded implementation is clearly implied by
+“fix,” “implement,” “update,” or equivalent wording. For L2 work, state the
+chosen direction and gates before editing even when no pause is needed.
 
-1. repository context, data flow, historical decisions, and worktree ownership;
-2. the four independent dimensions and their reasoning;
-3. allowed changes, explicit non-goals, escalation conditions, and owner split;
-4. at least two practical options when the choice is material;
-5. static, runtime, and external/device verification inputs;
-6. acceptance rows using `Pass`, `Fail`, `Not Run`, `Accepted Limitation`, or
-   `Carried Risk`.
+## 5. Scale coordination to the task
 
-Wait for the user's selected option before implementation. A small L0 fast path
-may skip a long option comparison when the scope and risk are genuinely clear,
-but it must still state the objective, ownership, and verification.
+Treat Agent names as host-local mappings. Assign responsibilities such as lead,
+executor, architecture reviewer, or acceptance owner; never require a named
+model that the environment does not provide.
 
-## 4. Define evidence in layers
+- `economy`: keep work with the primary Agent unless delegation is required.
+- `balanced`: use one bounded executor or reviewer only when allowed, available,
+  and likely to improve speed or independence.
+- `maximum`: use broader parallel work and independent review only when scope or
+  risk justifies it.
 
-Separate these gates in the contract and final report:
+The primary Agent owns integration and final review. Delegation never overrides
+user scope, host policy, tool availability, or concurrency limits.
 
-- **Static:** source inspection, schema/manifest checks, exclusions,
-  deterministic plans, geometry, and diff ownership.
-- **Host/build:** unit tests, host tests, firmware compilation, generated
-  artifact checks, and failure-path tests.
-- **Runtime:** service, network, JSON, browser, or simulator behavior. State
-  whether the data is live, cached, or fixture-based.
+## 6. Define evidence as claims
+
+Separate the following gates in the contract and final report:
+
+- **Static:** source, schema, manifest, geometry, exclusions, diff ownership.
+- **Host/build:** unit or host tests, compilation, deterministic artifacts,
+  failure paths.
+- **Runtime:** browser, service, network, JSON, simulator, or live/cached/fixture
+  behavior.
 - **External/device:** upload, boot, physical interaction, visual output, or
-  explicit user observation.
+  explicit human observation.
 
-Never report compile success as device acceptance. If a device or external gate
-was not run, mark it `Not Run` or `Carried Risk` and name the owner and trigger.
-Convert `Carried Risk` to `Pass` only after the named evidence is observed and
-recorded. A negative observation can be `Accepted Limitation` when it matches a
-declared boundary; it must produce a follow-up task if the product needs more.
+Each acceptance row should contain: claim, whether it is required, result,
+evidence, and owner or follow-up trigger. Use only these results:
 
-For dynamic input, distinguish these states explicitly: present, absent,
-unknown, stale, and failed. Do not infer an unlimited or healthy state from a
-zero value, an empty field, or a missing reset time alone.
+- `Pass`: evidence supports the claim.
+- `Fail`: evidence contradicts the claim.
+- `Not Run`: no evidence was collected; this cannot close a required gate.
+- `Accepted Limitation`: observed behavior matches a boundary or non-goal that
+  the accepted contract already names. If it changes a required accepted
+  result, record explicit human acceptance before closure.
+- `Carried Risk`: a desirable or required claim remains unresolved; name its
+  owner and trigger. Closing a required carried risk needs explicit human
+  acceptance.
 
-## 5. Apply level-specific gates
+Never use compilation as proof of runtime or device behavior. For dynamic data,
+distinguish present, absent, unknown, stale, and failed; zero or empty is not
+automatically healthy or unlimited.
 
-For stateful L0 input, define the trigger, held behavior, and re-arm behavior.
-Add at least one negative held-state test and one positive re-arm test when the
-bug involves repeated input.
+Apply domain gates only when relevant. Stateful input needs trigger, held, and
+re-arm tests. UI work needs accepted geometry and separate preview/physical
+evidence. L2 parents need named sub-gates and remain open until required gates
+are resolved or explicitly carried.
 
-For L1 UI or product work, define the accepted page and geometry, keep preview
-and renderer hierarchy aligned, and separate preview evidence from physical
-visual acceptance. Keep unrelated pages, state-machine changes, and protocol
-changes out of scope unless the contract expands.
+## 7. Review and record proportionate metrics
 
-For L2 work, split the parent into named gates such as core, generator,
-integration, independent review, and device acceptance. Keep the parent open
-until its required gates are complete. A static scanner does not prove coverage
-of arbitrary runtime text; runtime vocabulary, fallback policy, or an explicit
-accepted boundary must be named.
+After implementation, review architecture, ownership, duplicate logic,
+regressions, resource limits, product behavior, and non-goals.
 
-## 6. Review, rework, and metrics
+Always report the changed files, checks and outcomes, unresolved risks, and
+material human decisions. Record timing, Agent/tool-call counts, rework rounds,
+or end-to-end duration only when the project or user needs them and the values
+can be measured consistently. Define the counting method; otherwise use
+`unavailable`. Do not create work solely to improve a metric.
 
-After implementation, perform the lead review even when an executor was used.
-Check architecture consistency, API and data ownership, duplicate logic,
-regressions, product behavior, resource limits, and declared non-goals.
+Read [case-evidence.md](references/case-evidence.md) when a task needs the pilot
+failure modes behind these rules. Use
+[ACTIVE_TASK_EXAMPLE.md](../../templates/ACTIVE_TASK_EXAMPLE.md) when a durable
+contract is appropriate.
 
-Record process metrics using a stable definition:
+## 8. Use Git and external actions deliberately
 
-- start time: user confirmation of the implementation option;
-- review time: host/build evidence and integration review complete;
-- final acceptance time: external/device or user acceptance complete;
-- end-to-end time: start to final acceptance, when that gate exists;
-- Agent calls: count the declared top-level tool/subagent rounds and state
-  whether waits or failed calls are included;
-- rework rounds: implementation revisions made after the first verification;
-- human decisions: explicit option choices and final acceptance decisions,
-  counted separately;
-- changed files, test totals, build result, and unresolved risks.
+Do not commit, push, publish, flash hardware, contact production, or send
+messages unless authorized by the user or active contract. Before staging,
+inspect status, stage explicit files, review the staged list, run the repository
+checks, and scan for secrets. Leave user-owned and unrelated changes unstaged.
 
-Do not backfill invented precision. If a historical case lacks a metric, mark
-it unavailable and keep the case useful for qualitative workflow evidence.
+When commits are authorized, keep subjects short and implementation-focused.
+Project conventions may add task class, stage, and evidence trailers; do not
+create empty phase commits.
 
-## 7. Use Git as a process checkpoint
+## 9. Close honestly
 
-Keep commit subjects short and implementation-focused while exposing the task
-class and workflow stage, for example:
+Close when every required gate is `Pass`; an `Accepted Limitation` may also
+close its gate only when it was pre-accepted in the contract or explicitly
+accepted by the human after observation. A required `Carried Risk` needs
+explicit human acceptance with an owner and trigger. Keep the task open for any
+required `Fail` or `Not Run` result.
 
-```text
-[L1][Review] fix weekly-only quota mapping
-```
+Archive or replace a closed active contract before another task becomes
+current. Feed proven process defects back into the Skill or template without
+mixing framework changes into product commits.
 
-Use trailers when a meaningful checkpoint is committed:
-
-```text
-HALF-Work-Level: L1
-HALF-Work-Stage: Review
-HALF-Work-Task: short-task-id
-HALF-Work-Evidence: tests/build/device result
-```
-
-Add metric trailers only when they are defined for the task. Do not create
-empty commits merely to announce a phase. Stage files explicitly, verify the
-staged file list, run `git diff --cached --check`, scan for sensitive content,
-and leave user-owned changes unstaged.
-
-## 8. Close or carry the task
-
-Close only after every acceptance row is `Pass`, or after every remaining
-boundary is explicitly accepted with an owner and follow-up trigger. Record
-both the Review checkpoint and the final external acceptance when they occur at
-different times. Archive or replace a closed `ACTIVE_TASK.md` before starting
-another task; never let a closed contract remain the active source of truth.
-
-When a task exposes a process defect, record the correction and feed the rule
-back into the template or Skill. Keep product changes and framework changes as
-separate commits when possible.
-
-## 9. Case-derived guidance
-
-Read [case-evidence.md](references/case-evidence.md) when you need examples of
-the v0.1 decisions and failure modes. The cases establish these reusable rules:
-
-- edge-triggered input needs an explicit re-arm state;
-- L1 scope, artifact ownership, preview evidence, and board risk must be
-  separate;
-- L2 parents need sub-gates and must not silently close on a partial gate;
-- real external acceptance is a distinct human decision and timestamp;
-- metrics are useful only when their counting definitions are recorded.
-
-## 10. Invocation examples
-
-Use the skill explicitly for a new contract:
+## Invocation examples
 
 ```text
-Use $half-work to turn this request into a two-step task contract, inspect the
-repository, propose options and evidence, then wait for my decision.
+Use $half-work to inspect this repository, infer a minimal task contract from
+my request, pause only for material decisions, then implement and verify it.
 ```
-
-Use it for an implementation with an existing contract:
 
 ```text
-Use $half-work to implement the accepted task, preserve unrelated worktree
-changes, verify the declared gates, record metrics, and prepare the checkpoint.
+Use $half-work to review and close the current task without changing product
+code. Separate build evidence from device acceptance and list carried risks.
 ```
 
-If this repository-local copy is not installed or linked into the Codex Skill
-directory, a fresh conversation may not discover `$half-work` automatically.
-Install or link the Skill first, or explicitly provide the local path to
-`skills/half-work/SKILL.md`; a README link alone is not a Skill invocation.
+If a repository copy is not installed or linked into the Codex Skill directory,
+a new conversation may not discover `$half-work`. Install or link it, or provide
+the local `SKILL.md` path; a README link is not an invocation.
 
-Do not invoke this skill for a trivial explanation, translation, or code review
-that does not require task-contract and evidence management.
+## v0.2 boundaries
 
-## v0.1 boundaries
-
-This version does not automate metric collection, replace project-specific
-`AGENTS.md` rules, require a particular model, or publish private control files.
-Use the next real tasks to test its trigger precision, metric consistency, and
-closure behavior before promoting it to v1.
+This version does not automate metrics, require a named model, replace project
+rules, publish private contracts, or initialize a full control plane. It
+prioritizes proportional ceremony, material decision gates, portable roles,
+and honest closure while retaining v0.1 contract compatibility.
